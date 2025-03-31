@@ -106,6 +106,7 @@ const SalaryCalculator = () => {
       weekOffs: 6,
       holidays: 1,
       bankAccountNo: "",
+      designation: "",
       PFAccNumber: "",
       PanNumber: "",
       ESICNO: "",
@@ -278,6 +279,7 @@ const SalaryCalculator = () => {
             : "N/A",
           payDate: new Date().toLocaleDateString("en-IN"),
           pfNumber: formData.PFAccNumber || "N/A",
+          designation: formData.designation || "N/A",
           PanNumber: formData.PanNumber || "N/A",
           bankAccount: formData.bankAccountNo || "N/A",
           esiNumber: formData.ESICNO || "N/A",
@@ -485,6 +487,18 @@ const SalaryCalculator = () => {
                   type="number"
                   name="availableLeaves"
                   value={formData.availableLeaves || ""}
+                  onChange={handleChange}
+                  className="w-full border rounded px-3 py-2"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Designation
+                </label>
+                <input
+                  type="text"
+                  name="designation"
+                  value={formData.designation || ""}
                   onChange={handleChange}
                   className="w-full border rounded px-3 py-2"
                 />
