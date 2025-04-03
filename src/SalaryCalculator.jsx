@@ -186,11 +186,13 @@ const SalaryCalculator = () => {
     console.log("paidLeaveAmount:", paidLeaveAmount);
 
     const grossSalary =
-      Number(baseSalary) + allowances + paidLeaveAmount + Number(incentives);
+      Number(baseSalary) + allowances  + Number(incentives);
     console.log("grossSalary:", grossSalary);
 
     // Deductions calculations
-    const leaveDeduction = (Number(baseSalary) / 30) * Number(noOfLeaves);
+    const leaveDeduction =
+      (Number(baseSalary) / 30) * Number(noOfLeaves) ;
+    
     const halfDayDeduction = (Number(baseSalary) / 30 / 2) * Number(halfDays);
     const lateMarksDeduction = (Number(baseSalary) / 30) * Number(lateMarks);
 
@@ -224,7 +226,8 @@ const SalaryCalculator = () => {
 
     const leavesPluseHalfDayes =
       Number(baseSalary / 30) * Number(noOfLeaves) +
-      (Number(baseSalary / 30) / 2) * Number(halfDays);
+      (Number(baseSalary / 30) / 2) * Number(halfDays) -
+      Number(paidLeaveAmount);
 
     console.log("leavesPluseHalfDayes:", leavesPluseHalfDayes);
 
@@ -289,7 +292,8 @@ const SalaryCalculator = () => {
           paidDays: salaryInfo.totalWorkingDays,
           lopDays: salaryInfo.totalLeaves,
         },
-        paidLeaveAmount: salaryInfo.paidLeaveAmount,
+        paidLeaveDayes: formData.paidLeaves,
+        holidayes:formData.holidays,
         earnings: [
           {
             title: "Basic",
@@ -636,6 +640,8 @@ const SalaryCalculator = () => {
                 <input
                   type="number"
                   name="paidLeaves"
+                  min={0}
+                  max={2}
                   value={formData.paidLeaves}
                   onChange={handleNumberChange}
                   className="w-full border rounded px-3 py-2"

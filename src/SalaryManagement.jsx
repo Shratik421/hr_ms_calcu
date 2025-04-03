@@ -15,10 +15,9 @@ const SalaryManagement = ({ salaryData }) => {
       minimumFractionDigits: 2,
     }).format(amount);
   };
-function toTitleCase(str) {
-  return str.replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
+  function toTitleCase(str) {
+    return str.replace(/\b\w/g, (char) => char.toUpperCase());
+  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -106,17 +105,29 @@ function toTitleCase(str) {
                   </h3>
                   <p className="text-sm text-gray-600">Total Net Pay</p>
                 </div>
-                <div className="border-t border-green-200 pt-2">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm">Total Working Days</span>
-                    <span className="text-sm font-medium">
+                <div className="border-t border-green-200 pt-2 ">
+                  <div className="flex justify-between mb-1 w-full">
+                    <span className="text-sm w-[80%]">Total Working Days</span>
+                    <span className="text-sm font-medium w-[20%] text-start">
                       : {salaryData?.payment?.paidDays}
                     </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm">LOP Days</span>
-                    <span className="text-sm font-medium">
-                      : {salaryData?.payment?.lopDays}
+                  <div className="flex justify-between w-full">
+                    <span className="text-sm w-[80%]">LOP Days</span>
+                    <span className="text-sm font-medium w-[20%] text-start">
+                      : {" " + salaryData?.payment?.lopDays}
+                    </span>
+                  </div>
+                  <div className="flex justify-between  w-full">
+                    <span className="text-sm w-[80%]">Paid Leaves</span>
+                    <span className="text-sm font-medium w-[20%] text-start">
+                      : {" " + salaryData?.paidLeaveDayes}
+                    </span>
+                  </div>
+                  <div className="flex justify-between w-full">
+                    <span className="text-sm w-[80%]">Holidays</span>
+                    <span className="text-sm font-medium w-[20%] text-start">
+                      : {" " + salaryData?.holidayes}
                     </span>
                   </div>
                 </div>
@@ -165,33 +176,24 @@ function toTitleCase(str) {
                     AMOUNT
                   </div>
                 </div>
-
-                {salaryData?.earnings?.map((item, index) => (
-                  <div key={index} className="p-2 flex">
-                    <div className="w-1/2 text-sm">{item?.title}</div>
+                <div className="flex flex-col h-[85%] gap-2 justify-between">
+                  <div>
+                    {salaryData?.earnings?.map((item, index) => (
+                      <div key={index} className="p-2 flex">
+                        <div className="w-1/2 text-sm">{item?.title}</div>
+                        <div className="w-1/4 text-right text-sm justify-end ml-auto">
+                          ₹{formatCurrency(item?.amount)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="p-2 flex font-bold">
+                    <div className="w-1/2 text-sm">Gross Earnings</div>
                     <div className="w-1/4 text-right text-sm justify-end ml-auto">
-                      ₹{formatCurrency(item?.amount)}
+                      ₹{formatCurrency(salaryData?.grossEarnings)}
                     </div>
+                    {/* <div className="w-1/4"></div> */}
                   </div>
-                ))}
-
-                {salaryData?.padiLeaves && (
-                  <div className="p-2 flex">
-                    <div className="w-1/2 text-sm">
-                      {salaryData?.padiLeaves?.title}
-                    </div>
-                    <div className="w-1/4 text-right text-sm ml-auto">
-                      ₹{salaryData?.padiLeaves?.amount}
-                    </div>
-                  </div>
-                )}
-
-                <div className="p-2 flex font-bold">
-                  <div className="w-1/2 text-sm">Gross Earnings</div>
-                  <div className="w-1/4 text-right text-sm justify-end ml-auto">
-                    ₹{formatCurrency(salaryData?.grossEarnings)}
-                  </div>
-                  {/* <div className="w-1/4"></div> */}
                 </div>
               </div>
 
