@@ -4,7 +4,8 @@ import toast from "react-hot-toast";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import logo from "../src/assets/logo.png";
-import stamp from "../src/assets/stamp.png";
+import stamp from "../src/assets/Stamp sign payal mandal.png";
+import USirStamp from "./assets/Stamp sign Umesh SIr.png";
 
 const SalaryManagement = ({ salaryData }) => {
   console.log("salary Data : ", salaryData);
@@ -243,9 +244,13 @@ const SalaryManagement = ({ salaryData }) => {
               <div className="text-center items-center ">
                 <div className="flex items-center justify-center">
                   <img
-                    src={stamp}
+                    src={
+                      salaryData?.employee?.name === "payal mandal"
+                        ? USirStamp
+                        : stamp
+                    }
                     alt="Osumare Marketing Solutions stamp"
-                    className="h-[80px] w-[80px] my-0 py-0 top-0 bottom-0 "
+                    className="h-[80px] w-[80px] my-0 py-0 top-0 bottom-0"
                   />
                 </div>
                 <span>Osumare Marketing Solutions Pvt. Ltd.</span>
