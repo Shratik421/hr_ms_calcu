@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import logo from "../src/assets/logo.png";
+import stamp from "../src/assets/stamp.png";
 
 const SalaryManagement = ({ salaryData }) => {
   console.log("salary Data : ", salaryData);
@@ -98,7 +99,7 @@ const SalaryManagement = ({ salaryData }) => {
                 </div>
               </div>
 
-              <div className="bg-green-50 p-4 rounded border border-green-100">
+              <div className="bg-orange-50 p-4 rounded border border-orange-50">
                 <div className="text-center mb-4">
                   <h3 className="text-2xl font-bold text-gray-800">
                     ₹{formatCurrency(salaryData?.payment?.totalNetPay)}
@@ -239,13 +240,24 @@ const SalaryManagement = ({ salaryData }) => {
           {/* Total Net Payable */}
           <div className="mb-4">
             <div className="flex justify-between bg-gray-100 p-2 rounded">
+              <div className="text-center items-center ">
+                <div className="flex items-center justify-center">
+                  <img
+                    src={stamp}
+                    alt="Osumare Marketing Solutions stamp"
+                    className="h-[80px] w-[80px] my-0 py-0 top-0 bottom-0 "
+                  />
+                </div>
+                <span>Osumare Marketing Solutions Pvt. Ltd.</span>
+              </div>
               <div>
                 <div className="text-sm font-bold">TOTAL NET PAYABLE</div>
                 <div className="text-xs text-gray-600">
                   Gross Earnings - Total Deductions
                 </div>
               </div>
-              <div className="bg-green-50 px-4 py-2 font-bold text-right ">
+
+              <div className="bg-green-50 px-4 py-0 h-10 font-bold text-right ">
                 ₹{formatCurrency(salaryData?.payment?.totalNetPay)}
               </div>
             </div>
@@ -270,7 +282,7 @@ const SalaryManagement = ({ salaryData }) => {
       <footer className="bg-white p-4 text-center text-gray-600 text-xs">
         <div className="max-w-4xl mx-auto">
           <p>
-            Osumare Marketing Solutions Pvt Ltd., Osumare Building, Survey No.
+            Osumare Marketing Solutions Pvt. Ltd., Osumare Building, Survey No.
             43, Pathare Thube Nagar, Nagar Road, Kharadi, Pune 14
           </p>
           <p>www.osumare.com</p>
