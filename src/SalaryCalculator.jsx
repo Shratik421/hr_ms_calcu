@@ -91,6 +91,7 @@ const SalaryCalculator = () => {
       lName: "",
       salaryMonth: "",
       allowances: 0,
+      payDate:"",
       baseSalary: "",
       availableLeaves: 0,
       incentives: 0,
@@ -195,6 +196,7 @@ const SalaryCalculator = () => {
     
     const halfDayDeduction = (Number(baseSalary) / 30 / 2) * Number(halfDays);
     const lateMarksDeduction = (Number(baseSalary) / 30) * Number(lateMarks);
+
      const leaveDeduction =
        (Number(baseSalary) / 30) * Number(noOfLeaves) + halfDayDeduction - paidLeaveAmount;
 
@@ -204,11 +206,10 @@ const SalaryCalculator = () => {
 
     const totalDeductions =
       leaveDeduction +
-      halfDayDeduction +
       lateMarksDeduction +
       Number(penalty) +
       Number(professionalTax) +
-      Number(advancedSalary);
+      Number(advancedSalary) + paidLeaveAmount;
 
     console.log("totalDeductions:", totalDeductions);
 
@@ -236,7 +237,9 @@ const SalaryCalculator = () => {
     // Apply week off deduction if total leaves exceed 4
     const weekOffDeduction =
       totalLeaves > 4 ? (Number(baseSalary) / 30) * Number(weekOffs) : 0;
-    const finalTotalDeduction = totalDeductions + weekOffDeduction;
+    
+    const finalTotalDeduction =
+      totalDeductions + weekOffDeduction - paidLeaveAmount;
 
     console.log("weekOffDeduction:", weekOffDeduction);
     console.log("finalTotalDeduction:", finalTotalDeduction);
@@ -244,7 +247,7 @@ const SalaryCalculator = () => {
     // Calculate net salary
     const netSalary = grossSalary - finalTotalDeduction;
 
-    console.log("netSalary:", netSalary);
+    
 
     return {
       paidLeaveAmount,
@@ -282,7 +285,7 @@ const SalaryCalculator = () => {
                 year: "numeric",
               })
             : "N/A",
-          payDate: new Date().toLocaleDateString("en-IN"),
+          payDate: formData.payDate,
           pfNumber: formData.PFAccNumber || "N/A",
           designation: formData.designation || "N/A",
           PanNumber: formData.PanNumber || "N/A",
@@ -576,6 +579,19 @@ const SalaryCalculator = () => {
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">
+                Pay Date
+              </label>
+              <input
+                type="date"
+                name="payDate"
+                value={formData.payDate}
+                onChange={handleChange}
+                required
+                className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
             <div>
               <label className="block text-sm font-medium mb-1">
                 Joining Date
