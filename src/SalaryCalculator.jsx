@@ -188,13 +188,15 @@ const SalaryCalculator = () => {
     const grossSalary =
       Number(baseSalary) + allowances  + Number(incentives);
     console.log("grossSalary:", grossSalary);
-
+    //----------------------------------------------------------------------------------------------------------------------
+    
     // Deductions calculations
-    const leaveDeduction =
-      (Number(baseSalary) / 30) * Number(noOfLeaves) ;
+   
     
     const halfDayDeduction = (Number(baseSalary) / 30 / 2) * Number(halfDays);
     const lateMarksDeduction = (Number(baseSalary) / 30) * Number(lateMarks);
+     const leaveDeduction =
+       (Number(baseSalary) / 30) * Number(noOfLeaves) + halfDayDeduction - paidLeaveAmount;
 
     console.log("leaveDeduction:", leaveDeduction);
     console.log("halfDayDeduction:", halfDayDeduction);
@@ -869,14 +871,14 @@ const SalaryCalculator = () => {
                     </span>
                   </p>
                 </div>
-                <div>
+                {/* <div>
                   <p className="text-sm font-medium">
                     Paid Leave Amount:{" "}
                     <span className="font-normal">
                       ₹{salaryInfo.paidLeaveAmount.toFixed(2)}
                     </span>
                   </p>
-                </div>
+                </div> */}
                 <div>
                   <p className="text-sm font-medium">
                     Incentives:{" "}
@@ -898,18 +900,19 @@ const SalaryCalculator = () => {
                   <p className="text-sm font-medium">
                     Leave Deduction:{" "}
                     <span className="font-normal">
-                      ₹{salaryInfo.leaveDeduction.toFixed(2)}
+                      ₹{salaryInfo.leaveDeduction.toFixed(2)} 
+                    
                     </span>
                   </p>
                 </div>
-                <div>
+                {/* <div>
                   <p className="text-sm font-medium">
                     Half Day Deduction:{" "}
                     <span className="font-normal">
                       ₹{salaryInfo.halfDayDeduction.toFixed(2)}
                     </span>
                   </p>
-                </div>
+                </div> */}
                 <div>
                   <p className="text-sm font-medium">
                     Late Marks Deduction:{" "}
